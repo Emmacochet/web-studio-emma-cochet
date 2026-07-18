@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "optimize-images": "node scripts/optimize-images.mjs",
-    "deploy": "cross-env GH_PAGES=true next build && gh-pages -d out"
+    "deploy": "cross-env GH_PAGES=true next build && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "next": "16.2.10",
