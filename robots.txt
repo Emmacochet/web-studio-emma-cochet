@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://studioemmacochet.fr/sitemap.xml
