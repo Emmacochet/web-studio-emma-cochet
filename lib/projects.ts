@@ -1,5 +1,7 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { projectsOrder } from "@/src/config/projects-order";
+import { sortBySlugOrder } from "@/lib/sort-by-order";
 
 export type Project = {
   slug: string;
@@ -14,31 +16,13 @@ async function getProjectsDir() {
   return path.join(process.cwd(), "src", "projects");
 }
 
-function getMimeType(imageName: string) {
-  const extension = path.extname(imageName).toLowerCase();
-
-  switch (extension) {
-    case ".jpg":
-    case ".jpeg":
-      return "image/jpeg";
-    case ".png":
-      return "image/png";
-    case ".gif":
-      return "image/gif";
-    case ".webp":
-      return "image/webp";
-    default:
-      return "image/svg+xml";
-  }
-}
-
 export async function getProjects(): Promise<Project[]> {
   const projectsDir = await getProjectsDir();
   const entries = await fs.readdir(projectsDir, { withFileTypes: true });
-  const projectDirs = entries
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort();
+  const projectDirs = sortBySlugOrder(
+    entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name),
+    projectsOrder
+  );
 
   const projects = await Promise.all(
     projectDirs.map(async (slug) => {
@@ -65,9 +49,13 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   return projects.find((project) => project.slug === slug) ?? null;
 }
 
-export async function getProjectImageDataUrl(slug: string, imageName: string) {
-  const projectsDir = await getProjectsDir();
-  const imagePath = path.join(projectsDir, slug, imageName);
-  const fileBuffer = await fs.readFile(imagePath);
-  return `data:${getMimeType(imageName)};base64,${fileBuffer.toString("base64")}`;
+export function getProjectImageUrl(slug: string, imageName: string) {
+  return `/projects/${slug}/${imageName}`;
+}
+
+export async function getProjectImages(project: Project) {
+  return project.images.map((imageName) => ({
+    src: getProjectImageUrl(project.slug, imageName),
+    alt: `${project.title} — ${imageName}`,
+  }));
 }

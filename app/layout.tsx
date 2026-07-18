@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { siteUrl } from "@/src/config/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Emma Cochet | Architecture Studio",
-  description: "A contemporary architecture portfolio featuring residential and cultural projects.",
+  metadataBase: new URL(siteUrl),
+  title: "Emma Cochet | Studio d'architecture",
+  description: "Un portfolio d'architecture contemporaine présentant des projets résidentiels et culturels.",
+  openGraph: {
+    title: "Emma Cochet | Studio d'architecture",
+    description: "Un portfolio d'architecture contemporaine présentant des projets résidentiels et culturels.",
+    url: siteUrl,
+    siteName: "Emma Cochet",
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,10 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="fr" className="h-full antialiased">
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
