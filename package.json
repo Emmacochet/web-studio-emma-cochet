@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "optimize-images": "node scripts/optimize-images.mjs"
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "deploy": "cross-env GH_PAGES=true next build && gh-pages -d out"
   },
   "dependencies": {
     "next": "16.2.10",
@@ -20,8 +21,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
+    "gh-pages": "^6.3.0",
     "sharp": "^0.35.3",
     "tailwindcss": "^4",
     "typescript": "^5"

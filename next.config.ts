@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const repoName = "web-studio-emma-cochet";
-const basePath = process.env.GITHUB_ACTIONS ? `/${repoName}` : "";
+const basePath = process.env.GH_PAGES ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.0.102"],
