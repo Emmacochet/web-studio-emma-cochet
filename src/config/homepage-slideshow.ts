@@ -8,5 +8,5 @@ export type SlideshowImageConfig =
 export const homepageSlideshowImages: SlideshowImageConfig[] = [
   { kind: "project", project: "algaetecture", image: "VISUAL-PITS.png", alt: "Vue 3D de puit de teinture végétale dans une manufacture" },
   { kind: "project", project: "robespierre_montreuil", image: "IMG_3014.jpg", alt: "Robespierre Montreuil — vue intérieure" },
-  { kind: "furniture", item: "turning_the_tables", image: "table.JPG", alt: "Turning the tables" },
+  { kind: "furniture", item: "turning_the_tables", image: "IMG_0006.JPG", alt: "Turning the tables" },
 ];

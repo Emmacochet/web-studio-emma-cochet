@@ -4,13 +4,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Emma Cochet | Studio d'architecture",
-  description: "Un portfolio d'architecture contemporaine présentant des projets résidentiels et culturels.",
+  title: "Studio Emma Cochet",
+  description: "Architecte d'intérieur",
   openGraph: {
-    title: "Emma Cochet | Studio d'architecture",
-    description: "Un portfolio d'architecture contemporaine présentant des projets résidentiels et culturels.",
+    title: "Studio Emma Cochet",
+    description: "Architecte d'intérieur",
     url: siteUrl,
-    siteName: "Emma Cochet",
+    siteName: "Studio Emma Cochet",
     locale: "fr_FR",
     type: "website",
   },

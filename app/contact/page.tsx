@@ -46,9 +46,9 @@ export default function ContactPage() {
       <div className="grid gap-14 sm:border-border sm:pt-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <div className="space-y-8">
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">Nous contacter</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">Contact</p>
             <h2 className="mt-4 font-serif text-2xl leading-snug text-foreground">
-              Disponible pour des commandes résidentielles, culturelles et hôtelières de charme.
+              Un projet ? Parlons-en.
             </h2>
           </div>
           <div className="space-y-3 font-mono text-[13px] uppercase tracking-[0.1em] text-body">

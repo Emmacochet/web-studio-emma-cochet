@@ -24,9 +24,6 @@ export default function AboutPage() {
         <div className="space-y-8">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">À propos</p>
-            <h2 className="mt-4 font-serif text-2xl leading-snug text-foreground">
-              Entre ancien et contemporain.
-            </h2>
           </div>
 
           <div className="space-y-5 text-[15px] leading-7 text-body">
