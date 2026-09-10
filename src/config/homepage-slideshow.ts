@@ -10,4 +10,5 @@ export const homepageSlideshowImages: SlideshowImageConfig[] = [
   { kind: "project", project: "robespierre_montreuil", image: "IMG_3014.jpg", alt: "Robespierre Montreuil — vue intérieure" },
   { kind: "furniture", item: "turning_the_tables", image: "table_accueil.jpg", alt: "Turning the tables" },
   { kind: "project", project: "notre-dame-des-champs", image: "IMG_3727.jpg", alt: "Démolition en cours d'un appartement à Notre-Dame-des-Champs" },
+  { kind: "project", project: "notre-dame-des-champs", image: "260905 Rendu Chambre.png", alt: "Vue 3D d'une chambre dans un appartement à Notre-Dame-des-Champs" },
 ];
