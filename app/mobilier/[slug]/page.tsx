@@ -40,7 +40,7 @@ export default async function FurnitureItemPage({
           className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground transition hover:text-accent"
         >
           <span className="transition group-hover:-translate-x-1">←</span>
-          Retour à la collection
+          Retour
         </Link>
       </div>
     </SiteShell>
