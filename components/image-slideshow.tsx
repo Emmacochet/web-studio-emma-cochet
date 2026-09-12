@@ -34,7 +34,7 @@ export default function ImageSlideshow({
       setIndex((current) => (current + 1) % slides.length);
     }, intervalMs);
     return () => clearInterval(id);
-  }, [slides.length, intervalMs]);
+  }, [slides.length, intervalMs, index]);
 
   useEffect(() => {
     if (!showControls) return;
