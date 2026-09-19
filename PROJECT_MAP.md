@@ -83,7 +83,7 @@ app/
     mobilier/ | furniture/ , .../[slug]/
   globals.css               Tailwind import + CSS variables (theme colors, Helvetica font stack)
   sitemap.ts, robots.ts     static; sitemap lists every route for both locales
-  favicon.ico, icon.png, apple-icon.png   generated from brand/icon-master.png (ico = 16/32/48, icon = 512, apple = 180)
+  favicon.ico, icon.png, apple-icon.png   generated from brand/icon-master.png (ico = 16/32/48 tight, icon = 512 and apple = 180 with the artwork scaled to 80% for crop safety)
   (root)/                   `/` redirect to /fr (page.tsx + minimal layout.tsx)
 components/
   site-shell.tsx            header/nav/mobile menu/footer + LanguageSwitcher (client)
