@@ -83,7 +83,7 @@ app/
     mobilier/ | furniture/ , .../[slug]/
   globals.css               Tailwind import + CSS variables (theme colors, Helvetica font stack)
   sitemap.ts, robots.ts     static; sitemap lists every route for both locales
-  favicon.ico
+  favicon.ico, icon.png, apple-icon.png   generated from brand/icon-master.png (ico = 16/32/48, icon = 512, apple = 180)
   (root)/                   `/` redirect to /fr (page.tsx + minimal layout.tsx)
 components/
   site-shell.tsx            header/nav/mobile menu/footer + LanguageSwitcher (client)
@@ -103,6 +103,7 @@ src/
   furniture/<slug>/data.json
 public/                     static assets, photos (+ generated @width.webp), CNAME
 scripts/optimize-images.mjs
+brand/icon-master.png       1024x1024 favicon source (not served); regenerate the app/ icons from it with sharp
 image-loader.ts             custom next/image loader
 next.config.ts
 GUIDE_POUR_EMMA.md          owner-facing content guide (French)
