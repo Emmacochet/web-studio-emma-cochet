@@ -32,7 +32,7 @@ GitHub web UI (see `GUIDE_POUR_EMMA.md`, written in French).
 - **No shared root layout.** There is no `app/layout.tsx`. `app/fr/layout.tsx` and `app/en/layout.tsx`
   are each a root layout (own `<html lang>`), both delegating to `components/locale-layout.tsx`, which wraps
   children in `components/i18n-provider.tsx` (client `I18nextProvider`).
-- `/` is handled by `app/(root)/page.tsx`, which `redirect("/fr/")` (static export emits a meta-refresh page). It has its own minimal `app/(root)/layout.tsx` because there is no shared root layout. Change the default language there.
+- `/` is handled by `app/(root)/page.tsx`, which runs an inline script that redirects to `/en/` or `/fr/` from `navigator.languages` (en for unsupported languages; no-JS: a `<noscript>` meta refresh in the root layout sends to `/en/`). It has its own minimal `app/(root)/layout.tsx` because there is no shared root layout. Change the default language / supported list there.
 - Route segments are translated per locale; project/furniture item slugs are identical in both:
 
 | Section   | fr URL              | en URL               |
@@ -125,4 +125,4 @@ GUIDE_POUR_EMMA.md          owner-facing content guide (French)
 
 - Styling is Tailwind utility classes inline; theme tokens are CSS variables in `app/globals.css`.
 - Uppercase/mono small-caps look is the site's design language; keep it consistent.
-- Unprefixed / pre-i18n URLs (`/projects/x`, `/about`, `/mobilier`...) are handled by `scripts/404.html` (spa-github-pages trick): GitHub Pages serves it for unknown paths and it redirects to the locale-prefixed URL (browser language, fr default). `scripts/install-404.mjs` (npm `postbuild`) copies it over Next's generated `out/404.html`. Keep its slug table in sync with `lib/i18n/config.ts`.
+- Unprefixed / pre-i18n URLs (`/projects/x`, `/about`, `/mobilier`...) are handled by `scripts/404.html` (spa-github-pages trick): GitHub Pages serves it for unknown paths and it redirects to the locale-prefixed URL (browser language, en for unsupported languages). `scripts/install-404.mjs` (npm `postbuild`) copies it over Next's generated `out/404.html`. Keep its slug table in sync with `lib/i18n/config.ts`.
