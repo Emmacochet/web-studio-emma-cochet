@@ -1,7 +1,13 @@
 {
-"title": "Notre-Dame-des-Champs",
-"description": "Rénovation d'un appartement",
-"images": ["260905 Rendu Chambre with noise.png","IMG_3727.jpg","260905 Rendu SDB with noise.png"],
-"location": "En cours - Paris, France",
-"year": "2026"
+  "title": "Notre-Dame-des-Champs",
+  "description": "Rénovation d'un appartement",
+  "images": ["260905 Rendu Chambre with noise.png", "IMG_3727.jpg", "260905 Rendu SDB with noise.png"],
+  "location": "En cours - Paris, France",
+  "year": "2026",
+  "translations": {
+    "en": {
+      "description": "Renovation of an apartment",
+      "location": "In progress - Paris, France"
+    }
+  }
 }

@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { furnitureOrder } from "@/src/config/furniture-order";
 import { sortBySlugOrder } from "@/lib/sort-by-order";
+import { defaultLocale, type Locale } from "@/lib/i18n/config";
 
 export type FurnitureItem = {
   produit: string;
@@ -13,11 +14,17 @@ export type FurnitureItem = {
   year?: string;
 };
 
+type FurnitureText = Pick<FurnitureItem, "title" | "description" | "produit">;
+
+type FurnitureData = Omit<FurnitureItem, "slug"> & {
+  translations?: Partial<Record<Locale, Partial<FurnitureText>>>;
+};
+
 async function getFurnitureDir() {
   return path.join(process.cwd(), "src", "furniture");
 }
 
-export async function getFurnitureItems(): Promise<FurnitureItem[]> {
+export async function getFurnitureItems(lang: Locale = defaultLocale): Promise<FurnitureItem[]> {
   const furnitureDir = await getFurnitureDir();
   const entries = await fs.readdir(furnitureDir, { withFileTypes: true });
   const itemDirs = sortBySlugOrder(
@@ -29,14 +36,15 @@ export async function getFurnitureItems(): Promise<FurnitureItem[]> {
     itemDirs.map(async (slug) => {
       const dataPath = path.join(furnitureDir, slug, "data.json");
       const fileContents = await fs.readFile(dataPath, "utf8");
-      const data = JSON.parse(fileContents) as Omit<FurnitureItem, "slug">;
+      const data = JSON.parse(fileContents) as FurnitureData;
+      const text = data.translations?.[lang];
 
       return {
         slug,
-        title: data.title,
-        description: data.description,
+        title: text?.title ?? data.title,
+        description: text?.description ?? data.description,
         images: data.images,
-        produit: data.produit,
+        produit: text?.produit ?? data.produit,
         year: data.year,
       };
     })
@@ -45,8 +53,8 @@ export async function getFurnitureItems(): Promise<FurnitureItem[]> {
   return items;
 }
 
-export async function getFurnitureItemBySlug(slug: string): Promise<FurnitureItem | null> {
-  const items = await getFurnitureItems();
+export async function getFurnitureItemBySlug(slug: string, lang: Locale = defaultLocale): Promise<FurnitureItem | null> {
+  const items = await getFurnitureItems(lang);
   return items.find((item) => item.slug === slug) ?? null;
 }
 

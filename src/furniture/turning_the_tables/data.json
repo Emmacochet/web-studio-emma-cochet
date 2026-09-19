@@ -3,5 +3,11 @@
   "description": "Transformation d'une table victorienne en une pièce contemporaine, mêlant acajou, acier inoxydable et éléments réemployés.\n\nExpositions : Milan Design Week 2025 (BASE.Milano) - Meanwhile Space, Roca Gallery London",
   "images": ["IMG_0006.jpg", "Turning the Tables at MDW26 - Emma Cochet.jpg"],
   "produit": "Table basse",
-  "year": "2024"
+  "year": "2024",
+  "translations": {
+    "en": {
+      "description": "Transformation of a Victorian table into a contemporary piece, combining mahogany, stainless steel and reused elements.\n\nExhibitions: Milan Design Week 2025 (BASE.Milano) - Meanwhile Space, Roca Gallery London",
+      "produit": "Coffee table"
+    }
+  }
 }

@@ -3,5 +3,11 @@
   "description": "Réhabilitation d'anciennes usines en locaux d'activités",
   "images": ["IMG_3014.jpg", "vue extension to photoshop.png", "image exterieure batiment E", "IMG_3015.jpg", "coupe bb batiment E", "IMG_3019.jpg"],
   "location": " En cours - Montreuil, France",
-  "year": "2026"
+  "year": "2026",
+  "translations": {
+    "en": {
+      "description": "Rehabilitation of former factories into business premises",
+      "location": "In progress - Montreuil, France"
+    }
+  }
 }

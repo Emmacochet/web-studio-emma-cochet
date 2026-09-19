@@ -1,0 +1,60 @@
+{
+  "site": {
+    "name": "Studio Emma Cochet",
+    "description": "Architecte d'intérieur",
+    "ogLocale": "fr_FR"
+  },
+  "nav": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "furniture": "Mobilier",
+    "contact": "Contact",
+    "about": "À propos",
+    "main": "Navigation principale",
+    "mobile": "Navigation mobile",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "skipToContent": "Aller au contenu principal",
+    "language": "Langue"
+  },
+  "common": {
+    "back": "Retour",
+    "previousImage": "Image précédente",
+    "nextImage": "Image suivante",
+    "privateCommission": "Commande privée",
+    "customPiece": "Pièce sur mesure"
+  },
+  "home": {
+    "title": "Studio Emma Cochet — Architecture",
+    "slideshowLabel": "Diaporama d'accueil"
+  },
+  "projects": {
+    "title": "Projets"
+  },
+  "furniture": {
+    "title": "Collection de mobilier"
+  },
+  "about": {
+    "title": "À propos",
+    "portraitAlt": "Portrait d'Emma Cochet",
+    "role": "Fondatrice — Architecte d'intérieur",
+    "location": "Paris, France",
+    "paragraph1": "Emma Cochet est une architecte d'intérieur basée à Paris, diplômée du Royal College of Art à Londres. Son parcours a nourri une sensibilité particulière pour la mise en valeur et le respect de l'existant, avec un dialogue subtil entre ancien et contemporain.",
+    "paragraph2": "Cette approche se prolonge dans sa collection de mobilier, où elle donne une nouvelle vie à des pièces anciennes à travers une écriture audacieuse."
+  },
+  "contact": {
+    "title": "Contacter le studio",
+    "eyebrow": "Contact",
+    "heading": "Un projet ? Parlons-en.",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre nom",
+    "emailLabel": "Email",
+    "emailPlaceholder": "vous@exemple.com",
+    "messageLabel": "Descriptif du projet",
+    "messagePlaceholder": "Parlez-moi de votre projet.",
+    "error": "Une erreur est survenue. Merci de réessayer, ou de nous écrire directement à {{email}}.",
+    "success": "Message envoyé — nous revenons vers vous rapidement.",
+    "submitting": "Envoi en cours…",
+    "submit": "Envoyer la demande"
+  }
+}

@@ -63,7 +63,12 @@ Exemple réel actuellement sur le site (`src/projects/gaite/data.json`) :
   "description": "Rénovation d'un appartement familial.",
   "images": ["IMG_3314.jpg"],
   "location": "Paris, France",
-  "year": "2026"
+  "year": "2026",
+  "translations": {
+    "en": {
+      "description": "Renovation of a family apartment."
+    }
+  }
 }
 ```
 
@@ -74,6 +79,8 @@ Champs disponibles :
   **la première photo de la liste devient la photo de couverture**)
 - `location` — la ville/lieu (optionnel)
 - `year` — l'année (optionnel)
+- `translations` — la version anglaise (optionnel, voir la section "Traductions"
+  plus bas)
 
 Clique sur **"Commit changes"** pour enregistrer.
 
@@ -135,6 +142,36 @@ les projets (noms identiques, `.jpg`/`.jpeg`/`.png`).
 
 Pour choisir l'ordre d'affichage, modifie `src/config/furniture-order.ts` de la
 même façon que pour les projets.
+
+---
+
+## Traductions (anglais)
+
+Le site existe en français (`/fr/`) et en anglais (`/en/`). Le texte français reste
+dans les champs habituels (`title`, `description`, `location`, `produit`). Pour
+l'anglais, ajoute un bloc `translations` → `en` dans le même `data.json`, avec
+uniquement les champs que tu veux traduire :
+
+```json
+"translations": {
+  "en": {
+    "title": "New Kitchen",
+    "description": "Renovation of a family kitchen.",
+    "location": "Paris, France"
+  }
+}
+```
+
+- Pour un projet : `title`, `description`, `location` peuvent être traduits.
+- Pour un meuble : `title`, `description`, `produit` peuvent être traduits.
+- **Un champ non traduit s'affiche en français** sur la version anglaise — rien ne
+  casse si tu oublies. (`images` et `year` sont communs aux deux langues.)
+- Attention à la virgule entre le champ précédent et `"translations"`.
+
+Les textes fixes du site (menus, page "À propos", formulaire de contact…) se
+trouvent dans `lib/i18n/locales/fr.json` et `lib/i18n/locales/en.json`.
+Pour le diaporama d'accueil, la description anglaise d'une photo s'ajoute avec
+`altTranslations: { en: "..." }` dans `src/config/homepage-slideshow.ts`.
 
 ---
 

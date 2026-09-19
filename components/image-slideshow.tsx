@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const SWIPE_THRESHOLD = 40;
 
@@ -20,6 +21,7 @@ export default function ImageSlideshow({
   slides: SlideshowSlide[];
   intervalMs?: number;
 }) {
+  const { t } = useTranslation();
   const [index, setIndex] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const touchStartX = useRef<number | null>(null);
@@ -91,7 +93,7 @@ export default function ImageSlideshow({
         ref={containerRef}
         role="group"
         aria-roledescription="carousel"
-        aria-label="Diaporama d'accueil"
+        aria-label={t("home.slideshowLabel")}
         onTouchStart={showControls ? handleTouchStart : undefined}
         onTouchEnd={showControls ? handleTouchEnd : undefined}
         className="group/carousel relative aspect-[4/5] w-full touch-pan-y overflow-hidden bg-background lg:aspect-[16/9]"
@@ -116,7 +118,7 @@ export default function ImageSlideshow({
         <div className="mt-4 flex items-center justify-center gap-6 font-mono text-[11px] tracking-[0.15em] text-foreground">
           <button
             type="button"
-            aria-label="Image précédente"
+            aria-label={t("common.previousImage")}
             onClick={() => goTo(-1)}
             className="flex cursor-pointer items-center justify-center p-1 transition hover:text-accent"
           >
@@ -129,7 +131,7 @@ export default function ImageSlideshow({
           </span>
           <button
             type="button"
-            aria-label="Image suivante"
+            aria-label={t("common.nextImage")}
             onClick={() => goTo(1)}
             className="flex cursor-pointer items-center justify-center p-1 transition hover:text-accent"
           >

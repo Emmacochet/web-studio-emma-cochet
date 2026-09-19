@@ -2,6 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { projectsOrder } from "@/src/config/projects-order";
 import { sortBySlugOrder } from "@/lib/sort-by-order";
+import { defaultLocale, type Locale } from "@/lib/i18n/config";
 
 export type Project = {
   slug: string;
@@ -12,11 +13,17 @@ export type Project = {
   year?: string;
 };
 
+type ProjectText = Pick<Project, "title" | "description" | "location">;
+
+type ProjectData = Omit<Project, "slug"> & {
+  translations?: Partial<Record<Locale, Partial<ProjectText>>>;
+};
+
 async function getProjectsDir() {
   return path.join(process.cwd(), "src", "projects");
 }
 
-export async function getProjects(): Promise<Project[]> {
+export async function getProjects(lang: Locale = defaultLocale): Promise<Project[]> {
   const projectsDir = await getProjectsDir();
   const entries = await fs.readdir(projectsDir, { withFileTypes: true });
   const projectDirs = sortBySlugOrder(
@@ -28,14 +35,15 @@ export async function getProjects(): Promise<Project[]> {
     projectDirs.map(async (slug) => {
       const dataPath = path.join(projectsDir, slug, "data.json");
       const fileContents = await fs.readFile(dataPath, "utf8");
-      const data = JSON.parse(fileContents) as Omit<Project, "slug">;
+      const data = JSON.parse(fileContents) as ProjectData;
+      const text = data.translations?.[lang];
 
       return {
         slug,
-        title: data.title,
-        description: data.description,
+        title: text?.title ?? data.title,
+        description: text?.description ?? data.description,
         images: data.images,
-        location: data.location,
+        location: text?.location ?? data.location,
         year: data.year,
       };
     })
@@ -44,8 +52,8 @@ export async function getProjects(): Promise<Project[]> {
   return projects;
 }
 
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  const projects = await getProjects();
+export async function getProjectBySlug(slug: string, lang: Locale = defaultLocale): Promise<Project | null> {
+  const projects = await getProjects(lang);
   return projects.find((project) => project.slug === slug) ?? null;
 }
 

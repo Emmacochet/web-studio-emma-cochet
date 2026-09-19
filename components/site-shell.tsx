@@ -4,15 +4,48 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { siteContact } from "@/src/config/contact";
+import {
+  locales,
+  isLocale,
+  sectionPath,
+  switchLocalePath,
+  type Locale,
+  type SectionKey,
+} from "@/lib/i18n/config";
 
-const links = [
-  { href: "/", label: "Accueil" },
-  { href: "/projects", label: "Projets" },
-  { href: "/mobilier", label: "Mobilier" },
-  { href: "/contact", label: "Contact" },
-  { href: "/a-propos", label: "À propos" },
-];
+const sections: SectionKey[] = ["home", "projects", "furniture", "contact", "about"];
+
+function LanguageSwitcher({
+  lang,
+  pathname,
+  className = "",
+}: {
+  lang: Locale;
+  pathname: string;
+  className?: string;
+}) {
+  const { t } = useTranslation();
+
+  return (
+    <div role="group" aria-label={t("nav.language")} className={`flex items-center ${className}`}>
+      {locales.map((locale, index) => (
+        <span key={locale} className="flex items-center">
+          {index > 0 ? <span aria-hidden="true" className="mx-2 h-3 w-px bg-border" /> : null}
+          <Link
+            href={switchLocalePath(pathname, locale)}
+            lang={locale}
+            aria-current={locale === lang ? "true" : undefined}
+            className={`transition hover:text-foreground ${locale === lang ? "text-foreground" : "text-muted"}`}
+          >
+            {locale.toUpperCase()}
+          </Link>
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export default function SiteShell({
   children,
@@ -25,6 +58,16 @@ export default function SiteShell({
   narrowMargins?: boolean;
 }) {
   const pathname = usePathname();
+  const { t, i18n } = useTranslation();
+  const lang = (isLocale(i18n.language) ? i18n.language : "fr") as Locale;
+  const normalizedPath = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  const links = sections.map((section) => ({
+    href: sectionPath(lang, section),
+    label: t(`nav.${section}`),
+    isHome: section === "home",
+  }));
+  const isLinkActive = (link: { href: string; isHome: boolean }) =>
+    link.isHome ? normalizedPath === link.href : normalizedPath.startsWith(link.href);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -52,20 +95,19 @@ export default function SiteShell({
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-background focus:px-4 focus:py-2 focus:font-mono focus:text-[11px] focus:uppercase focus:tracking-[0.2em] focus:text-foreground focus:outline focus:outline-2 focus:outline-accent"
       >
-        Aller au contenu principal
+        {t("nav.skipToContent")}
       </a>
       <header className="sticky top-0 z-20 shrink-0 border-b border-border bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-8 lg:px-12 uppercase">
           <Link
-            href="/"
+            href={sectionPath(lang, "home")}
             className="pr-2 font-serif text-lg tracking-tight text-foreground transition hover:text-accent"
           >
             Studio Emma Cochet
           </Link>
-          <nav aria-label="Navigation principale" className="hidden items-center gap-6 font-mono text-[11px] uppercase tracking-[0.25em] text-muted sm:flex sm:gap-6">
+          <nav aria-label={t("nav.main")} className="hidden items-center gap-6 font-mono text-[11px] uppercase tracking-[0.25em] text-muted sm:flex sm:gap-6">
             {links.map((link) => {
-              const isActive =
-                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              const isActive = isLinkActive(link);
 
               return (
                 <Link
@@ -109,6 +151,9 @@ export default function SiteShell({
                 </svg>
               </a>
             </div>
+            <div className="flex items-center border-l border-border pl-6 sm:pl-8">
+              <LanguageSwitcher lang={lang} pathname={pathname} className="text-[11px]" />
+            </div>
           </nav>
 
           <button
@@ -117,7 +162,7 @@ export default function SiteShell({
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
-            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-label={isMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
             className="flex h-8 w-11 items-center justify-center text-foreground sm:hidden"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
@@ -139,14 +184,13 @@ export default function SiteShell({
 
         <nav
           id="mobile-menu"
-          aria-label="Navigation mobile"
+          aria-label={t("nav.mobile")}
           hidden={!isMenuOpen}
           className="absolute inset-x-0 top-full border-t border-border bg-background px-4 py-5 font-mono text-[13px] uppercase tracking-[0.2em] text-muted shadow-lg sm:hidden"
         >
             <div className="flex flex-col gap-5">
               {links.map((link) => {
-                const isActive =
-                  link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+                const isActive = isLinkActive(link);
 
                 return (
                   <Link
@@ -190,6 +234,9 @@ export default function SiteShell({
                   <line x1="11" y1="10" x2="11" y2="17" />
                 </svg>
               </a>
+              <div className="flex items-center border-l border-border pl-5">
+                <LanguageSwitcher lang={lang} pathname={pathname} className="text-[13px]" />
+              </div>
             </div>
           </nav>
       </header>

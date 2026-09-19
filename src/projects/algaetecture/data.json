@@ -3,5 +3,11 @@
   "description": "Réhabilitation d'un site historique en manufacture textile dédiée à la transformation des algues, ancrée dans une démarche d'économie circulaire",
   "images": ["VISUAL-PITS.png", "proposal_Plan and Section 201.jpg", "IMG_0193.jpeg", "exterior view sketch.png"],
   "location": "Chatham, Royaume-Uni",
-  "year": "2023"
+  "year": "2023",
+  "translations": {
+    "en": {
+      "description": "Rehabilitation of a historic site into a textile manufactory dedicated to seaweed processing, grounded in a circular economy approach",
+      "location": "Chatham, United Kingdom"
+    }
+  }
 }

@@ -1,0 +1,60 @@
+{
+  "site": {
+    "name": "Studio Emma Cochet",
+    "description": "Interior architect",
+    "ogLocale": "en_GB"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "furniture": "Furniture",
+    "contact": "Contact",
+    "about": "About",
+    "main": "Main navigation",
+    "mobile": "Mobile navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to main content",
+    "language": "Language"
+  },
+  "common": {
+    "back": "Back",
+    "previousImage": "Previous image",
+    "nextImage": "Next image",
+    "privateCommission": "Private commission",
+    "customPiece": "Custom piece"
+  },
+  "home": {
+    "title": "Studio Emma Cochet — Architecture",
+    "slideshowLabel": "Homepage slideshow"
+  },
+  "projects": {
+    "title": "Projects"
+  },
+  "furniture": {
+    "title": "Furniture collection"
+  },
+  "about": {
+    "title": "About",
+    "portraitAlt": "Portrait of Emma Cochet",
+    "role": "Founder — Interior architect",
+    "location": "Paris, France",
+    "paragraph1": "Emma Cochet is an interior architect based in Paris, who graduated from the Royal College of Art in London. Her background has fostered a particular sensitivity to enhancing and respecting what already exists, in a subtle dialogue between old and contemporary.",
+    "paragraph2": "This approach extends into her furniture collection, where she gives antique pieces a new life through a bold language."
+  },
+  "contact": {
+    "title": "Contact the studio",
+    "eyebrow": "Contact",
+    "heading": "Have a project? Let's talk.",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "messageLabel": "Project description",
+    "messagePlaceholder": "Tell me about your project.",
+    "error": "Something went wrong. Please try again, or write to us directly at {{email}}.",
+    "success": "Message sent — we will get back to you shortly.",
+    "submitting": "Sending…",
+    "submit": "Send request"
+  }
+}

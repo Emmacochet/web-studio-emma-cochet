@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 import SiteShell from "@/components/site-shell";
 import { siteContact } from "@/src/config/contact";
 
@@ -10,6 +11,7 @@ const fieldClassName =
 type SubmitStatus = "idle" | "submitting" | "success" | "error";
 
 export default function ContactPage() {
+  const { t } = useTranslation();
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<SubmitStatus>("idle");
 
@@ -42,14 +44,12 @@ export default function ContactPage() {
   }
 
   return (
-    <SiteShell title="Contacter le studio">
+    <SiteShell title={t("contact.title")}>
       <div className="grid gap-14 sm:border-border sm:pt-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <div className="space-y-8">
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">Contact</p>
-            <h2 className="mt-4 font-serif text-2xl leading-snug text-foreground">
-              Un projet ? Parlons-en.
-            </h2>
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">{t("contact.eyebrow")}</p>
+            <h2 className="mt-4 font-serif text-2xl leading-snug text-foreground">{t("contact.heading")}</h2>
           </div>
           <div className="space-y-3 font-mono text-[13px] uppercase tracking-[0.1em] text-body">
             <p>{siteContact.email}</p>
@@ -70,31 +70,31 @@ export default function ContactPage() {
           <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
           <div>
             <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.2em] text-muted" htmlFor="name">
-              Nom
+              {t("contact.nameLabel")}
             </label>
-            <input id="name" name="name" required className={fieldClassName} placeholder="Votre nom" />
+            <input id="name" name="name" required className={fieldClassName} placeholder={t("contact.namePlaceholder")} />
           </div>
           <div>
             <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.2em] text-muted" htmlFor="email">
-              Email
+              {t("contact.emailLabel")}
             </label>
-            <input id="email" name="email" type="email" required className={fieldClassName} placeholder="vous@exemple.com" />
+            <input id="email" name="email" type="email" required className={fieldClassName} placeholder={t("contact.emailPlaceholder")} />
           </div>
           <div>
             <label className="mb-2 block font-mono text-[11px] uppercase tracking-[0.2em] text-muted" htmlFor="message">
-              Descriptif du projet
+              {t("contact.messageLabel")}
             </label>
-            <textarea id="message" name="message" rows={5} required className={`${fieldClassName} resize-none`} placeholder="Parlez-moi de votre projet." />
+            <textarea id="message" name="message" rows={5} required className={`${fieldClassName} resize-none`} placeholder={t("contact.messagePlaceholder")} />
           </div>
 
           {status === "error" && (
             <p role="alert" className="font-mono text-[11px] uppercase tracking-[0.15em] text-rose-500">
-              Une erreur est survenue. Merci de réessayer, ou de nous écrire directement à {siteContact.email}.
+              {t("contact.error", { email: siteContact.email })}
             </p>
           )}
           {status === "success" && (
             <p role="status" className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">
-              Message envoyé — nous revenons vers vous rapidement.
+              {t("contact.success")}
             </p>
           )}
 
@@ -103,7 +103,7 @@ export default function ContactPage() {
             disabled={status === "submitting"}
             className="group inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground transition hover:text-accent disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
           >
-            {status === "submitting" ? "Envoi en cours…" : "Envoyer la demande"}
+            {status === "submitting" ? t("contact.submitting") : t("contact.submit")}
             <span className="transition group-hover:translate-x-1">→</span>
           </button>
         </form>

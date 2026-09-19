@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const SWIPE_THRESHOLD = 40;
 
@@ -19,6 +20,7 @@ export default function ImageCarousel({
   variant?: "card" | "hero";
   aspectClassName?: string;
 }) {
+  const { t } = useTranslation();
   const [index, setIndex] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const touchStartX = useRef<number | null>(null);
@@ -112,7 +114,7 @@ export default function ImageCarousel({
           <>
             <button
               type="button"
-              aria-label="Image précédente"
+              aria-label={t("common.previousImage")}
               onClick={(event) => go(-1, event)}
               className={`absolute left-0 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 py-3 font-mono ${arrowTextSize} text-white mix-blend-difference transition duration-300 opacity-100 pointer-fine:opacity-0 pointer-fine:group-hover/carousel:opacity-100`}
             >
@@ -120,7 +122,7 @@ export default function ImageCarousel({
             </button>
             <button
               type="button"
-              aria-label="Image suivante"
+              aria-label={t("common.nextImage")}
               onClick={(event) => go(1, event)}
               className={`absolute right-0 top-1/2 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 py-3 font-mono ${arrowTextSize} text-white mix-blend-difference transition duration-300 opacity-100 pointer-fine:opacity-0 pointer-fine:group-hover/carousel:opacity-100`}
             >
@@ -134,7 +136,7 @@ export default function ImageCarousel({
         <div className="mt-4 flex items-center justify-center gap-6 font-mono text-[11px] tracking-[0.15em] text-foreground">
           <button
             type="button"
-            aria-label="Image précédente"
+            aria-label={t("common.previousImage")}
             onClick={(event) => go(-1, event)}
             className="flex cursor-pointer items-center justify-center p-1 transition hover:text-accent"
           >
@@ -147,7 +149,7 @@ export default function ImageCarousel({
           </span>
           <button
             type="button"
-            aria-label="Image suivante"
+            aria-label={t("common.nextImage")}
             onClick={(event) => go(1, event)}
             className="flex cursor-pointer items-center justify-center p-1 transition hover:text-accent"
           >

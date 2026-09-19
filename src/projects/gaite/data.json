@@ -3,5 +3,11 @@
   "description": "Rénovation d'un appartement familial",
   "images": ["IMG_3314.jpg"],
   "location": "En cours - Paris, France",
-  "year": "2026"
+  "year": "2026",
+  "translations": {
+    "en": {
+      "description": "Renovation of a family apartment",
+      "location": "In progress - Paris, France"
+    }
+  }
 }
