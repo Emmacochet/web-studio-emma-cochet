@@ -49,7 +49,7 @@ export default function ContactPage() {
         <div className="space-y-8">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted">{t("contact.eyebrow")}</p>
-            <h2 className="mt-4 font-serif text-2xl leading-snug text-foreground">{t("contact.heading")}</h2>
+            {/* <h2 className="mt-4 font-serif text-2xl leading-snug text-foreground">{t("contact.heading")}</h2> */}
           </div>
           <div className="space-y-3 font-mono text-[13px] uppercase tracking-[0.1em] text-body">
             <p>{siteContact.email}</p>
