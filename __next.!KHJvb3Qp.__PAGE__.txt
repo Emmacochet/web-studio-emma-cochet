@@ -1,6 +1,5 @@
 1:"$Sreact.fragment"
-3:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/35ip4ctshr802.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":["$L2",null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"774kAywaXy52GC2sVchWr"}
-5:null
-2:E{"digest":"NEXT_REDIRECT;replace;/fr/;307;"}
+2:I[97367,["/_next/static/chunks/05-c3ty_6dwfk.js","/_next/static/chunks/35ip4ctshr802.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n(function () {\n  var locales = [\"fr\", \"en\"];\n  var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || \"\"];\n  var lang = \"en\";\n  for (var i = 0; i < prefs.length; i++) {\n    var code = String(prefs[i]).toLowerCase().split(\"-\")[0];\n    if (locales.indexOf(code) !== -1) { lang = code; break; }\n  }\n  window.location.replace(\"/\" + lang + \"/\" + window.location.search + window.location.hash);\n})();\n"}}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"nUkc4TC5oTNl82na2JGop"}
+4:null
