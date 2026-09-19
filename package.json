@@ -6,10 +6,11 @@
     "dev": "npm run optimize-images && next dev",
     "prebuild": "npm run optimize-images",
     "build": "next build",
+    "postbuild": "node scripts/install-404.mjs",
     "start": "next start",
     "lint": "eslint",
     "optimize-images": "node scripts/optimize-images.mjs",
-    "deploy": "next build && gh-pages -d out --dotfiles"
+    "deploy": "npm run build && gh-pages -d out --dotfiles"
   },
   "dependencies": {
     "i18next": "^26.4.2",

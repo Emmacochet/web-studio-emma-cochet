@@ -32,7 +32,7 @@ GitHub web UI (see `GUIDE_POUR_EMMA.md`, written in French).
 - **No shared root layout.** There is no `app/layout.tsx`. `app/fr/layout.tsx` and `app/en/layout.tsx`
   are each a root layout (own `<html lang>`), both delegating to `components/locale-layout.tsx`, which wraps
   children in `components/i18n-provider.tsx` (client `I18nextProvider`).
-- `/` is **not** a Next route: `public/index.html` is a static page redirecting to `/fr/` (meta refresh + JS).
+- `/` is handled by `app/(root)/page.tsx`, which `redirect("/fr/")` (static export emits a meta-refresh page). It has its own minimal `app/(root)/layout.tsx` because there is no shared root layout. Change the default language there.
 - Route segments are translated per locale; project/furniture item slugs are identical in both:
 
 | Section   | fr URL              | en URL               |
@@ -84,6 +84,7 @@ app/
   globals.css               Tailwind import + CSS variables (theme colors, Helvetica font stack)
   sitemap.ts, robots.ts     static; sitemap lists every route for both locales
   favicon.ico
+  (root)/                   `/` redirect to /fr (page.tsx + minimal layout.tsx)
 components/
   site-shell.tsx            header/nav/mobile menu/footer + LanguageSwitcher (client)
   locale-layout.tsx         <html lang> + <body> + I18nProvider
@@ -100,7 +101,7 @@ src/
   config/                   ordering, slideshow, contact, site URL
   projects/<slug>/data.json
   furniture/<slug>/data.json
-public/                     static assets, photos (+ generated @width.webp), index.html (redirect), CNAME
+public/                     static assets, photos (+ generated @width.webp), CNAME
 scripts/optimize-images.mjs
 image-loader.ts             custom next/image loader
 next.config.ts
@@ -117,10 +118,10 @@ GUIDE_POUR_EMMA.md          owner-facing content guide (French)
   and the section in `app/sitemap.ts`.
 - **Add a language:** extend `locales`/`sectionSlugs`/`localeNames` in `lib/i18n/config.ts`, add
   `lib/i18n/locales/<lang>.json` and register it in `lib/i18n/index.ts` + `components/i18n-provider.tsx` path
-  (via `resources`), create `app/<lang>/` with layout + routes, update `public/index.html` if needed.
+  (via `resources`), create `app/<lang>/` with layout + routes, update `app/(root)/page.tsx` if it should become the default.
 
 ## Gotchas
 
 - Styling is Tailwind utility classes inline; theme tokens are CSS variables in `app/globals.css`.
 - Uppercase/mono small-caps look is the site's design language; keep it consistent.
-- Existing pre-i18n URLs (`/projects`, `/mobilier`, ...) no longer exist; no legacy redirects are set up.
+- Unprefixed / pre-i18n URLs (`/projects/x`, `/about`, `/mobilier`...) are handled by `scripts/404.html` (spa-github-pages trick): GitHub Pages serves it for unknown paths and it redirects to the locale-prefixed URL (browser language, fr default). `scripts/install-404.mjs` (npm `postbuild`) copies it over Next's generated `out/404.html`. Keep its slug table in sync with `lib/i18n/config.ts`.
